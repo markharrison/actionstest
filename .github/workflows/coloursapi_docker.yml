@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 env:
   DOCkER_IMAGENAME: markharrison/coloursapi
-  DOCKER_IMAGETAG: v1
+  DOCKER_IMAGETAG: R${{ env.GITHUB_RUN_ID }}
 jobs:
   build:
     runs-on: ubuntu-20.04
