@@ -1,12 +1,10 @@
 name: Deploy ASP.NET Core Web Application to markharrisonwebapp
 on:
-  push:
-    branches:
-    - master
+  workflow_dispatch:
 env:
-  AZURE_WEBAPP_NAME: markharrisonwebapp
+  AZURE_WEBAPP_NAME: coloursapi
   AZURE_WEBAPP_PACKAGE_PATH: ./published
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.MARKHARRISONWEBAPP_PUBLISH_PROFILE }}
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.WEBAPP_PUBLISHINGPROFILE }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
   PROJECT_PATH: .
