@@ -27,4 +27,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags:  ${{ env.DOCkER_IMAGENAME }}:${{ env.DOCKER_IMAGETAG }}
+          tags:  ${{ env.DOCkER_IMAGENAME }}:${{ env.DOCKER_IMAGETAG }}, ${{ env.DOCkER_IMAGENAME }}:latest
