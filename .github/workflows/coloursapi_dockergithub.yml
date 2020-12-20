@@ -33,6 +33,8 @@ jobs:
           
           docker tag $IMAGE_NAME $IMAGE_NAME2
           
+          docker images 
+          
       - name: Push image
         run: docker push $IMAGE_NAME2
        
