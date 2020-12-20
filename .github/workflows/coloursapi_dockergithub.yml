@@ -19,15 +19,13 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - name: Tag & Push
-        run: |
-          
+      - name: Tag & Push run number
+        run: |        
           docker tag image $IMAGE_NAME:$IMAGE_TAG
-          docker tag image $IMAGE_NAME:latest
-          
-          docker images 
-                                           
           docker push $IMAGE_NAME:$IMAGE_TAG
+          
+      - name: Tag & Push latest
+        run: |                                         
+          docker tag image $IMAGE_NAME:latest
           docker push $IMAGE_NAME:latest
           
-          echo "done2"
