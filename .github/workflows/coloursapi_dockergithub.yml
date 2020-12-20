@@ -24,7 +24,7 @@ jobs:
           IMAGE_NAME2=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
 
           # Change all uppercase to lowercase
-          IMAGE_NAME2=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          IMAGE_NAME2=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
 
           echo IMAGE_NAME2=$IMAGE_NAME2
           echo IMAGE_NAME=$IMAGE_NAME        
