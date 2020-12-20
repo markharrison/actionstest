@@ -19,7 +19,7 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - name: Push image
+      - name: Tag image
         run: |
           IMAGE_NAME2=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
 
@@ -32,4 +32,7 @@ jobs:
           echo ACTOR=${{ github.actor }}
           
           docker tag $IMAGE_NAME $IMAGE_NAME2
-          docker push $IMAGE_NAME2
+          
+      - name: Push image
+        run: docker push $IMAGE_NAME2
+       
