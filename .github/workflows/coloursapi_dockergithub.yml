@@ -6,8 +6,7 @@ on:
 env:
   IMAGE_NAME: coloursapi
   IMAGE_TAG: R${{ github.run_number }}
-  IMAGE_NAME2:  docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-
+  
 jobs:
   build_push:
     runs-on: ubuntu-latest
@@ -20,18 +19,16 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - name: Tag image
+      - name: Tag & Push
         run: |
+          
+          IMAGE_NAME2 = docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
           IMAGE_NAME2LC=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
     
           docker tag $IMAGE_NAME $IMAGE_NAME2LC
           
           docker images 
-                  
-      - name: Push image2
-        run: |        
-          IMAGE_NAME2LC=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
-          
+                          
           echo "docker push " $IMAGE_NAME2LC
                     
           docker push $IMAGE_NAME2LC
