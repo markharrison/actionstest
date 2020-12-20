@@ -5,8 +5,8 @@ on:
 
 env:
   IMAGE_NAME: coloursapi
-  IMAGE_TAG2: R${{ github.run_number }}
-  IMAGE_TAG: latest
+  IMAGE_TAG: R${{ github.run_number }}
+  IMAGE_NAME2:  docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
 
 jobs:
   build_push:
@@ -22,33 +22,17 @@ jobs:
 
       - name: Tag image
         run: |
-          IMAGE_NAME2=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
-          
-          #IMAGE_NAME2=docker.pkg.github.com/$IMAGE_NAME:$IMAGE_TAG
-
-          # Change all uppercase to lowercase
-          IMAGE_NAME2=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
-
-          echo IMAGE_NAME2=$IMAGE_NAME2
-          echo IMAGE_NAME=$IMAGE_NAME        
-          echo IMAGE_TAG=$IMAGE_TAG
-          echo ACTOR=${{ github.actor }}
-          
-          docker tag $IMAGE_NAME $IMAGE_NAME2
+          IMAGE_NAME2LC=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
+    
+          docker tag $IMAGE_NAME $IMAGE_NAMELC2
           
           docker images 
-          
-      - name: Push image
-        run: |     
-          docker push "docker.pkg.github.com/markharrison/actionswebapp/coloursapi:latest"
-          
-          echo "done"
-          
+                  
       - name: Push image2
         run: |        
           
-          echo "docker push " $IMAGE_NAME2
+          echo "docker push " $IMAGE_NAME2LC
                     
-          docker push $IMAGE_NAME2
+          docker push $IMAGE_NAME2LC
           
           echo "done2"
