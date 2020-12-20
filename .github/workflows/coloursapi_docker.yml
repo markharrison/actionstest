@@ -2,13 +2,12 @@ name: Docker - To Docker Hub & GitHub Container Registry
 on:
   workflow_dispatch:
 env:
-  DOCkER_IMAGENAME: markharrison/coloursapi
-  DOCKER_IMAGETAG: R${{ github.run_number }}
+  IMAGENAME: coloursapi
+  IMAGETAG: R${{ github.run_number }}
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
@@ -35,5 +34,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags:  >
-            ${{ env.DOCkER_IMAGENAME }}:${{ env.DOCKER_IMAGETAG }}, 
-            ${{ env.DOCkER_IMAGENAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGENAME }}:${{ env.IMAGETAG }}, 
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGENAME }}:latest,
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGENAME }}:${{ env.IMAGETAG }}, 
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGENAME }}:latest
