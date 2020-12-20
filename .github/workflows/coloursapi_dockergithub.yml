@@ -42,8 +42,13 @@ jobs:
         run: |     
           docker push "docker.pkg.github.com/markharrison/actionswebapp/coloursapi:latest"
           
-          echo "docker push " $IMAGE_NAME2
+          echo "done"
           
+      - name: Push image2
+        run: |        
+          
+          echo "docker push " $IMAGE_NAME2
+                    
           docker push $IMAGE_NAME2
           
-          echo "done"
+          echo "done2"
