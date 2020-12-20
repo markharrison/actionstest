@@ -1,4 +1,4 @@
-name: Docker GCR (GitHub Contain Registry)
+name: Docker GitHub package
 
 on:
   workflow_dispatch:
