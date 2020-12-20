@@ -24,7 +24,7 @@ jobs:
         run: |
           IMAGE_NAME2LC=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
     
-          docker tag $IMAGE_NAME $IMAGE_NAMELC2
+          docker tag $IMAGE_NAME $IMAGE_NAME2LC
           
           docker images 
                   
