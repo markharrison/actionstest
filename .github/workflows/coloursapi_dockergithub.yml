@@ -6,7 +6,7 @@ on:
 env:
   IMAGE_NAME: coloursapi
   IMAGE_TAG: R${{ github.run_number }}
-  IMAGE_NAME2:  docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
+  IMAGE_NAME2:  docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
 jobs:
   build_push:
@@ -30,6 +30,7 @@ jobs:
                   
       - name: Push image2
         run: |        
+          IMAGE_NAME2LC=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
           
           echo "docker push " $IMAGE_NAME2LC
                     
