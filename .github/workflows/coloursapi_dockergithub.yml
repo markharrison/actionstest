@@ -5,7 +5,8 @@ on:
 
 env:
   IMAGE_NAME: markharrison/coloursapi
-  IMAGE_TAG: R${{ github.run_number }}
+  IMAGE_TAG2: R${{ github.run_number }}
+  IMAGE_TAG: latest
 
 jobs:
   build_push:
