@@ -1,1 +1,35 @@
-123
+name: Docker GitHub Container Registry
+
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/coloursapi
+  IMAGE_TAG: R${{ github.run_number }}
+  
+jobs:
+  build_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag image
+
+      - name: Login to GitHub Package Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Tag & Push run number
+        run: |        
+          docker tag image $IMAGE_NAME:$IMAGE_TAG
+          docker push $IMAGE_NAME:$IMAGE_TAG
+          
+      - name: Tag & Push latest
+        run: |                                         
+          docker tag image $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:latest
+          
