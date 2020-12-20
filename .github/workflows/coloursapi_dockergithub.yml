@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: markharrison/coloursapi
+  IMAGE_NAME: coloursapi
   IMAGE_TAG2: R${{ github.run_number }}
   IMAGE_TAG: latest
 
@@ -22,9 +22,9 @@ jobs:
 
       - name: Tag image
         run: |
-          # IMAGE_NAME2=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
+          IMAGE_NAME2=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$IMAGE_TAG
           
-          IMAGE_NAME2=docker.pkg.github.com/$IMAGE_NAME:$IMAGE_TAG
+          #IMAGE_NAME2=docker.pkg.github.com/$IMAGE_NAME:$IMAGE_TAG
 
           # Change all uppercase to lowercase
           IMAGE_NAME2=$(echo $IMAGE_NAME2 | tr '[A-Z]' '[a-z]')
@@ -40,7 +40,7 @@ jobs:
           
       - name: Push image
         run: |     
-          docker push "docker.pkg.github.com/markharrison/coloursapi:latest"
+          docker push "docker.pkg.github.com/markharrison/coloursapi/coloursapi:latest"
           
           echo "docker push " $IMAGE_NAME2
           
