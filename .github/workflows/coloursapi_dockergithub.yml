@@ -36,5 +36,11 @@ jobs:
           docker images 
           
       - name: Push image
-        run: docker push $IMAGE_NAME2
+        run: |
+          docker push $IMAGE_NAME2
        
+          echo "docker push " $IMAGE_NAME2
+          
+          docker push "docker.pkg.github.com/markharrison/actionswebapp/markharrison/coloursapi:r8"
+          
+          echo "done"
