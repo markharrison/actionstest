@@ -26,19 +26,12 @@ jobs:
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          # Strip git ref prefix from version
-          #VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name
-          #[[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
           # Use Docker `latest` tag convention
           #[ "$VERSION" == "main" ] && VERSION=latest
 
-          echo_IMAGE_TAG= $IMAGE_TAG
-          echo_IMAGE_NAME= $IMAGE_NAME        
+          echo IMAGE_TAG=$IMAGE_TAG
+          echo IMAGE_NAME=$IMAGE_NAME        
           echo IMAGE_ID=$IMAGE_ID
-          echo REF=${{ github.ref }}
           echo ACTOR=${{ github.actor }}
           
           #docker tag $IMAGE_NAME $IMAGE_ID: 
