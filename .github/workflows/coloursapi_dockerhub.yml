@@ -1,4 +1,4 @@
-name: Docker HUb
+name: Docker Hub
 on:
   workflow_dispatch:
 env:
