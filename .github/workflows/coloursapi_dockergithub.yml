@@ -23,9 +23,11 @@ jobs:
         run: |
           
           docker tag image $IMAGE_NAME:$IMAGE_TAG
+          docker tag image $IMAGE_NAME:latest
           
           docker images 
                                            
           docker push $IMAGE_NAME:$IMAGE_TAG
+          docker push $IMAGE_NAME:latest
           
           echo "done2"
