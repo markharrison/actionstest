@@ -37,7 +37,7 @@ jobs:
           
       - name: Push image
         run: |     
-          docker push "docker.pkg.github.com/markharrison/actionswebapp/markharrison/coloursapi:r8"
+          docker push "docker.pkg.github.com/markharrison/actionswebapp/markharrison/coloursapi:r9"
           
           echo "docker push " $IMAGE_NAME2
           
